@@ -71,7 +71,7 @@ app.post("/formDetails", async (req, res) => {
 });
 
 app.post("/loanDetails", async (req, res) => {
-  const form = await Form.findOne({ mobileNumber: res.body.mobileNumber });
+  const form = await Form.findOne({ mobileNumber: req.body.mobileNumber });
 
   const loanDetails = new LoanDetails({
     loanType: req.body.loanType,
@@ -81,8 +81,21 @@ app.post("/loanDetails", async (req, res) => {
   });
 
   await loanDetails.save();
-  res.json("msg: Data saved successfully");
+  res.json({ msg: "Data saved successfully" });
 });
+
+app.post("/calculateEmi", (req, res) => {
+  const { interest, loanAmount, tenure } = req.body;
+  const interestPerMonth = interest / 100;
+  const months = tenure * 12;
+
+  const r = interest / (12 * 100); // one month interest
+  const t = tenure * 12; // one month period
+  const emi = (loanAmount * r * Math.pow(1 + r, t)) / (Math.pow(1 + r, t) - 1);
+
+  res.json({ emi: emi });
+});
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`server started on ${PORT}`));

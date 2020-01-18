@@ -13,6 +13,10 @@ const LoanDetailsSchema = new Schema({
   tenure: {
     type: Number,
     required: true
+  },
+  customerId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "forms"
   }
 });
 
