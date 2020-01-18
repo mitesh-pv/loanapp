@@ -1,17 +1,17 @@
-const express = require('express');
-const connectDB = require('./config/db');
-const Form= require("./models/Form");
-const FormDetails= require("./models/FormDetails");
+const express = require("express");
+const connectDB = require("./config/db");
+const Form = require("./models/Form");
+const FormDetails = require("./models/FormDetails");
 
 const app = express();
 
-// connect database 
+// connect database
 connectDB();
 
 // Init middleware
-app.use(express.json({extended:false}));
+app.use(express.json({ extended: false }));
 
-app.get('/', (req, res ) => res.send("API running"));
+app.get("/", (req, res) => res.send("API running"));
 
 // Define routes
 app.use("/api/users", require("./routes/api/users"));
@@ -19,26 +19,38 @@ app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/profile", require("./routes/api/profile"));
 app.use("/api/posts", require("./routes/api/posts"));
 
-
 app.post("/fillform", async (req, res) => {
-  
-  const {firstName, lastName, city, mobileNumber} = req.body;
+  const { firstName, lastName, city, mobileNumber } = req.body;
 
   const form = new Form({
     firstName: firstName,
     lastName: lastName,
     city: city,
     mobileNumber: mobileNumber
-  })
+  });
 
   await form.save();
-  res.json({"msg": "Data saved"});
+  res.json({ msg: "Data saved" });
 });
 
 app.post("/formDetails", async (req, res) => {
-  const {FirstName, MiddleName, LastName, email, emp_type, dob, mobileNumber, pan, pincode, experience, income}=req.body;
+  const {
+    FirstName,
+    MiddleName,
+    LastName,
+    email,
+    emp_type,
+    dob,
+    mobileNumber,
+    pan,
+    pincode,
+    experience,
+    income
+  } = req.body;
   console.log(req.body);
-  const form = await Form.findOne({mobileNumber : mobileNumber});
+  const form = await Form.findOne({ mobileNumber: mobileNumber });
+  console.log(form);
+
   const formDetails = new FormDetails({
     FirstName: FirstName,
     LastName: LastName,
@@ -55,8 +67,8 @@ app.post("/formDetails", async (req, res) => {
   });
 
   await formDetails.save();
-  res.json({"msg": "Data saved"});
-})
-const PORT = process.env.PORT||5000;
+  res.json({ msg: "Data saved" });
+});
+const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, ()=> console.log(`server started on ${PORT}`));
+app.listen(PORT, () => console.log(`server started on ${PORT}`));

@@ -33,5 +33,13 @@
   "devDependencies": {
     "concurrently": "^5.0.2",
     "nodemon": "^2.0.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mitesh-pv/loanapp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mitesh-pv/loanapp/issues"
+  },
+  "homepage": "https://github.com/mitesh-pv/loanapp#readme"
 }
