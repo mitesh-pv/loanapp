@@ -73,11 +73,18 @@ app.post("/formDetails", async (req, res) => {
 app.post("/loanDetails", async (req, res) => {
   const form = await Form.findOne({ mobileNumber: req.body.mobileNumber });
 
+  const applicationNumber =
+    "ABC" +
+    Math.random()
+      .toString(36)
+      .substr(2, 9);
+
   const loanDetails = new LoanDetails({
     loanType: req.body.loanType,
     loanAmount: req.body.loanAmount,
     tenure: req.body.tenure,
-    customerId: form
+    customerId: form,
+    applicationNumber: applicationNumber
   });
 
   await loanDetails.save();

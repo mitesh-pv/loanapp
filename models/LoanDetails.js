@@ -17,6 +17,9 @@ const LoanDetailsSchema = new Schema({
   customerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "forms"
+  },
+  applicationNumber: {
+    type: String
   }
 });
 

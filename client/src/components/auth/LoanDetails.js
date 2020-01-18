@@ -8,10 +8,17 @@ const LoanDetails = ({ loan }) => {
     loanType: "",
     loanAmount: "",
     tenure: "",
-    interest: ""
+    interest: "",
+    applicationNumber: ""
   });
 
-  const { loanType, loanAmount, tenure, interest } = formData;
+  const {
+    loanType,
+    loanAmount,
+    tenure,
+    interest,
+    applicationNumber
+  } = formData;
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,7 +27,8 @@ const LoanDetails = ({ loan }) => {
     loanType,
     loanAmount,
     tenure,
-    interest
+    interest,
+    applicationNumber
   };
 
   const onSubmit = async e => {
@@ -36,7 +44,7 @@ const LoanDetails = ({ loan }) => {
     //   req_body = JSON.stringify(req_body);
     //   const res = await axios.post('/loanDetails', req_body, config);
     //   console.log(res);
-    loan(loanType, loanAmount, tenure, interest);
+    loan(loanType, loanAmount, tenure, interest, applicationNumber);
   };
 
   return (
