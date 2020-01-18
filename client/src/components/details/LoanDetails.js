@@ -1,9 +1,9 @@
 import React from 'react'
 
-const LoanDetails = () => {
+const LoanDetails = ( props ) => {
   return (
     <div>
-      Loan Details
+      { props.location.state.mobileNumber }
     </div>
   )
 }

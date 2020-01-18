@@ -54,6 +54,12 @@ const FillLoan =(props) => {
       if(res.data.status==="1"){
         props.history.push({
           pathname:'./loanDetails',
+          state: { mobileNumber : res.data.mobileNumber}
+        });
+      }else{
+        props.history.push({
+          pathname:'./otperror',
+          state: { message:'Internal server error.' }
         });
       }
       
@@ -61,7 +67,7 @@ const FillLoan =(props) => {
 
 
   return (
-      <Fragment className="cotainer">
+      <Fragment>
           <h1 className="large text-primary">Tell Us About You</h1>
           <small className="form-text"><b>Note: </b>Please provide your details as per your PAN card</small
         >
