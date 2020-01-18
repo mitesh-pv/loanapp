@@ -48,8 +48,16 @@ const FillLoan =(props) => {
       
       console.log(req_body);
       req_body = JSON.stringify(req_body);
+      
       const res = await axios.post('/formDetails', req_body, config);
-      console.log(res);
+
+      // if(res.data.status==="1"){
+      //   props.history.push({
+      //     pathname:'./otperror',
+      //     state: { message:'Phone no. already in queue.' }
+      //   });
+      // }
+      
     };
 
 
@@ -85,12 +93,12 @@ const FillLoan =(props) => {
 
 
 
-  <div className="form-group">
+      <div className="form-group">
       <label for="start">Date of birth:</label>
       </div>
 
       <div className="form-group">
-  <input type="date" id="dob" name="dob"
+      <input type="date" id="dob" name="dob"
         value="yyyy-mm-dd" 
         min="1900-01-01" max="2020-01-18" onChange ={ e => onChange(e)} value ={dob}></input>
         </div>
@@ -122,35 +130,16 @@ const FillLoan =(props) => {
         />
         </div>
 
-        <fieldset class="form-group" value={experience} name="experience" onChange = {e => onChange(e)}>
-      <div class="row">
-        <legend class="col-form-label col-sm-2 pt-0">Total Experience</legend>
-        <div class="col-sm-10">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="0 to 2 Years" checked/>
-            <label class="form-check-label" for="gridRadios1">
-              0 to 2 Years
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="3 to 4 Years"/>
-            <label class="form-check-label" for="gridRadios2">
-            3 to 4 Years
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="5 and above"/>
-            <label class="form-check-label" for="gridRadios2">
-            5 and above
-            </label>
-          </div>
-        </div>
-      </div>
-    </fieldset>
+      <label for="exampleFormControlSelect1">Years of Experience</label>
+      <select class="form-control" onChange = {e => onChange(e)} value={experience} name="experience" id="exampleFormControlSelect1">
+          <option value = "0-2">0 to 2</option>
+          <option value = "3-4">3 to 4</option>
+          <option value = "5 and more"> > 5</option>
+      </select>
 
-    <div className="form-group">
+      <div className="form-group">
         <input type="text" placeholder={ emp_type==="emp"? "Monthly Sal":"Annual Income"} name="income" value={income} onChange={e=> onChange(e) } required />
-    </div>
+      </div>
 
     <input type="submit" className="btn btn-primary" value="Next" />
     </form>
