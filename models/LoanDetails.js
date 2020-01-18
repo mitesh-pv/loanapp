@@ -11,8 +11,8 @@ const LoanDetailsSchema = new Schema({
     required: true
   },
   tenure: {
-    type: Number,
-    required: true
+    type: Number
+    // required: true
   },
   customerId: {
     type: mongoose.Schema.Types.ObjectId,
