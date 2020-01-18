@@ -103,6 +103,12 @@ app.post("/calculateEmi", (req, res) => {
   res.json({ emi: emi });
 });
 
+app.get("/getAllLoans", async (req, res) => {
+  const loans = await LoanDetails.find();
+
+  res.json({ loans: loans });
+});
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`server started on ${PORT}`));
