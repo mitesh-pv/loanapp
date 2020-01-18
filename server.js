@@ -56,7 +56,22 @@ app.post("/formDetails", async (req, res) => {
 
   await formDetails.save();
   res.json({"msg": "Data saved", "status": "1"});
+});
+
+app.get("/checkMobile", async(req, res) => {
+  const { mobileNumber } = req.body;
+
+  const form = await Form.findOne({mobileNumber: mobileNumber});
+
+  if(form){
+    res.json({ 'msg' : 'mobile already registered'});
+  }
+
 })
+
+
+
+
 const PORT = process.env.PORT||5000;
 
 app.listen(PORT, ()=> console.log(`server started on ${PORT}`));

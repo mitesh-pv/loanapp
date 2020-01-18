@@ -51,18 +51,17 @@ const FillLoan =(props) => {
       
       const res = await axios.post('/formDetails', req_body, config);
 
-      // if(res.data.status==="1"){
-      //   props.history.push({
-      //     pathname:'./otperror',
-      //     state: { message:'Phone no. already in queue.' }
-      //   });
-      // }
+      if(res.data.status==="1"){
+        props.history.push({
+          pathname:'./loanDetails',
+        });
+      }
       
     };
 
 
   return (
-      <Fragment>
+      <Fragment className="cotainer">
           <h1 className="large text-primary">Tell Us About You</h1>
           <small className="form-text"><b>Note: </b>Please provide your details as per your PAN card</small
         >

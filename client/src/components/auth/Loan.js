@@ -15,6 +15,9 @@ const Loan = (props) => {
   const {firstName, lastName, city, mobileNumber} = formData;
   const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 
+
+  
+
   const style = {
     width: "400px",
     margin: "20px",

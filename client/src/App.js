@@ -20,6 +20,7 @@ import store from './store';
 import OtpError from './components/auth/OtpError';
 import FillLoan from './components/auth/FillLoan';
 import BasicDetail from './components/details/BasicDetail';
+import LoanDetails from './components/details/LoanDetails';
 
 class App extends Component {
   render(){
@@ -38,6 +39,7 @@ class App extends Component {
               <Route exact path ="/pin" component ={ Pin } />
               <Route exact path ="/otperror" component = { OtpError } />
               <Route exact path ="/fillLoanForm" component = { FillLoan } />
+              <Route exact path ="/loanDetails" component = { LoanDetails } />
             </Switch>
           </section>
         </Fragment>
