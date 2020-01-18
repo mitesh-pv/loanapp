@@ -55,7 +55,7 @@ app.post("/formDetails", async (req, res) => {
   });
 
   await formDetails.save();
-  res.json({"msg": "Data saved"});
+  res.json({"msg": "Data saved", "status": "1"});
 })
 const PORT = process.env.PORT||5000;
 
