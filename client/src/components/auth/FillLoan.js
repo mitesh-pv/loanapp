@@ -61,18 +61,18 @@ const FillLoan =(props) => {
     
     <form className="form" onSubmit={e => onSubmit(e)}>
         
-      <div className="form-group">
+      <div className="form-group">First Name : 
         <input type="text" placeholder="First Name" name="FirstName" value={FirstName} onChange={e=> onChange(e) } required />
       </div>
-      <div className="form-group">
-        <input type="text" placeholder="Middle Name (Optional)" name="MiddleName" value={MiddleName} onChange={e=> onChange(e) } required />
+      <div className="form-group">Middle Name : 
+        <input type="text" placeholder="Middle Name (Optional)" name="MiddleName" value={MiddleName} onChange={e=> onChange(e) } />
       </div>
-      <div className="form-group">
+      <div className="form-group">Last Name : 
         <input type="text" placeholder="Last Name" name="LastName" value={LastName} onChange={e=> onChange(e) } required />
       </div>
       <div className="form-group">
 
-      <div className="form-group">
+      <div className="form-group">Email : 
         <input type="email" placeholder="Email Address" name="email" value={email} onChange={e=> onChange(e) } required />
       </div>
 
@@ -98,7 +98,7 @@ const FillLoan =(props) => {
         <div className="form-group">Telephone: <input type="text" name="mobileNumber" onChange ={ e => onChange(e)} value={mobileNumber}/></div>
         
     
-      <div className="form-group">
+      <div className="form-group">PAN Number : 
         <input
           type="text"
           placeholder="Personal PAN"
@@ -111,7 +111,7 @@ const FillLoan =(props) => {
           >Please enter your personal PAN number. the fourth character should be P.</small>
       </div>
 
-      <div className="form-group">
+      <div className="form-group"> Pincode : 
         <input
           type="text"
           placeholder="current residance pincode"
@@ -122,31 +122,14 @@ const FillLoan =(props) => {
         />
         </div>
 
-        <fieldset class="form-group" value={experience} name="experience" onChange = {e => onChange(e)}>
-      <div class="row">
-        <legend class="col-form-label col-sm-2 pt-0">Total Experience</legend>
-        <div class="col-sm-10">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="0 to 2 Years" checked/>
-            <label class="form-check-label" for="gridRadios1">
-              0 to 2 Years
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="3 to 4 Years"/>
-            <label class="form-check-label" for="gridRadios2">
-            3 to 4 Years
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="5 and above"/>
-            <label class="form-check-label" for="gridRadios2">
-            5 and above
-            </label>
-          </div>
-        </div>
-      </div>
-    </fieldset>
+
+        <label for="exampleFormControlSelect1" value={experience} name="experience">Experience</label>
+  <select class="form-control" onChange = {e => onChange(e)} value={experience} name="experience" id="exampleFormControlSelect1">
+    <option value = "0 to 2 Years">0 to 2 Years</option>
+    <option value ="3 to 4 Years">3 to 4 Years</option>
+    <option value ="5 and above">5 and above</option>
+  </select>
+
 
     <div className="form-group">
         <input type="text" placeholder={ emp_type==="emp"? "Monthly Sal":"Annual Income"} name="income" value={income} onChange={e=> onChange(e) } required />

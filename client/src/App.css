@@ -574,4 +574,9 @@ button {
   .post button {
     padding: 0.3rem 0.4rem;
   }
+
+  .btnRight{
+    float: right;
+    margin-left: 500px;
+  }
 }
