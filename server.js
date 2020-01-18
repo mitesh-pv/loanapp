@@ -2,7 +2,7 @@ const express = require("express");
 const connectDB = require("./config/db");
 const Form = require("./models/Form");
 const FormDetails = require("./models/FormDetails");
-
+const LoanDetails = require("./models/LoanDetails");
 const app = express();
 
 // connect database
@@ -67,7 +67,21 @@ app.post("/formDetails", async (req, res) => {
   });
 
   await formDetails.save();
-  res.json({ msg: "Data saved" });
+  res.json({ mobileNumber: mobileNumber });
+});
+
+app.post("/loanDetails", async (req, res) => {
+  const form = await Form.findOne({ mobileNumber: res.body.mobileNumber });
+
+  const loanDetails = new LoanDetails({
+    loanType: req.body.loanType,
+    loanAmount: req.body.loanAmount,
+    tenure: req.body.tenure,
+    customerId: form
+  });
+
+  await loanDetails.save();
+  res.json("msg: Data saved successfully");
 });
 const PORT = process.env.PORT || 5000;
 
