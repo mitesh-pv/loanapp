@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
@@ -10,9 +10,8 @@ const Login = () => {
   );
 
   const {email, password } = formData;
-
   const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
-  
+
   const onSubmit = async e => {
     e.preventDefault();
      

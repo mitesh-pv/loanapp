@@ -12,9 +12,14 @@ import './App.css';
 
 import Alert from './components/layout/Alert';
 
+import Pin from './components/auth/Pin';
+
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
+import OtpError from './components/auth/OtpError';
+import FillLoan from './components/auth/FillLoan';
+import BasicDetail from './components/details/BasicDetail';
 
 class App extends Component {
   render(){
@@ -27,9 +32,12 @@ class App extends Component {
           <section className="container">
             <Alert />
             <Switch>
-              <Route exact path= "/loan" component = {Loan} />
+              <Route exact path ="/loan" component = {Loan} />
               <Route exact path ="/register" component={Register} />
               <Route exact path ="/login" component={Login} />
+              <Route exact path ="/pin" component ={ Pin } />
+              <Route exact path ="/otperror" component = { OtpError } />
+              <Route exact path ="/fillLoanForm" component = { FillLoan } />
             </Switch>
           </section>
         </Fragment>
