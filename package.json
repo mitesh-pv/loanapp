@@ -25,10 +25,12 @@
     "react-moment": "^0.9.7",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
+    "react-simple-chatbot": "^0.6.1",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "styled-components": "^5.0.0"
   },
   "devDependencies": {
     "concurrently": "^5.0.2",
@@ -43,4 +45,3 @@
   },
   "homepage": "https://github.com/mitesh-pv/loanapp#readme"
 }
-

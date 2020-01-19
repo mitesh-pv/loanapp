@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
-
+// import SimpleForm from "./components/layout/SimpleForm";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Loan from "./components/auth/Loan";
@@ -42,6 +42,7 @@ class App extends Component {
                 <Route exact path="/loanDetails" component={LoanDetails} />
               </Switch>
             </section>
+            <themedExample />
           </Fragment>
         </Router>
       </Provider>

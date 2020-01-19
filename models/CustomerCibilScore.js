@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const CustomerCibilScore = new Schema({
+const CustomerCibilScoreSchema = new Schema({
   PAN: {
     type: String
   },
-  CibilScore: {
+  cibilScore: {
     type: Number
   },
-  LoanId: {
+  loanId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "customerLoanDetails"
   }
@@ -16,5 +16,5 @@ const CustomerCibilScore = new Schema({
 
 module.exports = CustomerCibilScore = mongoose.model(
   "CustomerCibilScore",
-  CustomerCibilScore
+  CustomerCibilScoreSchema
 );

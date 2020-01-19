@@ -3,6 +3,9 @@ const connectDB = require("./config/db");
 const Form = require("./models/Form");
 const FormDetails = require("./models/FormDetails");
 const LoanDetails = require("./models/LoanDetails");
+const CustomerLoanDetails = require("./models/CustomerLoanDetails");
+const CustomerCibilScore = require("./models/CustomerCibilScore");
+
 const app = express();
 
 // connect database
@@ -107,6 +110,74 @@ app.get("/getAllLoans", async (req, res) => {
   const loans = await LoanDetails.find();
 
   res.json({ loans: loans });
+});
+
+app.post("/populateCustomerLoanDetails", async (req, res) => {
+  const customerLoanDetails = new CustomerLoanDetails({
+    loanAmount: req.body.loanAmount,
+    paymentDate: req.body.paymentDate,
+    creditLimit: req.body.creditLimit
+  });
+
+  const obj = await customerLoanDetails.save();
+
+  const customerCibilScore = new CustomerCibilScore({
+    PAN: req.body.PAN,
+    cibilScore: req.body.cibilScore,
+    loanId: obj
+  });
+
+  await customerCibilScore.save();
+  // console.log(obj);
+});
+
+app.post("/payment", async (req, res) => {
+  const customerObj = await CustomerCibilScore.findOne({ PAN: req.body.PAN });
+  console.log(customerObj);
+  const loanObj = await CustomerLoanDetails.findById(customerObj.loanId);
+  const date = new Date(req.body.date);
+  const loanDate = new Date(loanObj.paymentDate);
+
+  console.log(date.valueOf() + " " + loanDate.valueOf());
+  if (loanDate.getDate() + 30 > date.getDate()) {
+    console.log("HELLO");
+    // loanObj.creditLimit -= req.body.emi;
+    customerObj.cibilScore -= 0.35 * customerObj.cibilScore;
+    // let updatedLoanObj = CustomerLoanDetails.findOneAndUpdate(
+    // { loanId: customerObj.loanId },
+    // { $set: loanObj },
+    // { new: true, upsert: true }
+    // );
+
+    let updatedCustomerObj = await CustomerCibilScore.findOneAndUpdate(
+      { PAN: req.body.PAN },
+      { $set: customerObj },
+      { new: true, upsert: true }
+    );
+
+    res.json({
+      updatedCustomerObj: updatedCustomerObj
+    });
+  } else {
+    loanObj.creditLimit -= req.body.emi;
+    customerObj.cibilScore += 0.35 * customerObj.cibilScore;
+    let updatedLoanObj = CustomerLoanDetails.findOneAndUpdate(
+      { loanId: customerObj.loanId },
+      { $set: loanObj },
+      { new: true, upsert: true }
+    );
+
+    let updatedCustomerObj = await CustomerCibilScore.findOneAndUpdate(
+      { PAN: req.body.PAN },
+      { $set: customerObj },
+      { new: true, upsert: true }
+    );
+
+    res.json({
+      updatedCustomerObj: updatedCustomerObj,
+      updatedLoanObj: updatedLoanObj
+    });
+  }
 });
 
 const PORT = process.env.PORT || 5000;
